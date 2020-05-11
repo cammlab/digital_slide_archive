@@ -16,11 +16,13 @@ services:
     command: bash -c 'python /conf/girder_config.py && girder mount /fuse && girder serve'
     volumes:
       # Default assetstore
-      - ./assetstore:/assetstore
+      - /Datashare/HistomicsUI/assetstore:/assetstore
+      # SMM assetstore
+      - /Datashare/SMM:/Datashare/SMM
       # Location of girder.local.conf and girder_config.py
       - .:/conf
       # Location to store logs
-      - ./logs:/logs
+      - /Datashare/HistomicsUI/logs:/logs
       # Needed to use slicer_cli_web to run docker containers.  These really
       # should be based on the DOCKER_* environment variables as well.
       - /usr/bin/docker:/usr/bin/docker:ro
@@ -43,12 +45,12 @@ services:
     command: --nojournal --logpath /var/log/mongodb/mongodb.log
     volumes:
       # Location to store database files
-      - ./db:/data/db
-      - ./logs:/var/log/mongodb
+      - /Datashare/HistomicsUI/db:/data/db
+      - /Datashare/HistomicsUI/logs:/var/log/mongodb
     # Uncomment to allow access to the database from outside of the docker
     # network.
-    # ports:
-    #   - "27017"
+    ports:
+      - "27017"
   memcached:
     image: memcached
     command: -m 4096
@@ -73,7 +75,7 @@ services:
       bash -c "TEMP=${TEMP:-/tmp} python -m girder_worker --concurrency=2 -Ofair --prefetch-multiplier=1 >>/logs/worker.log 2>&1"
     volumes:
       # Location to store logs
-      - ./logs:/logs
+      - /Datashare/HistomicsUI/logs:/logs
       # Needed to use slicer_cli_web to run docker containers
       - /usr/bin/docker:/usr/bin/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock

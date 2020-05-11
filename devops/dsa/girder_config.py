@@ -23,9 +23,11 @@ Setting().set('worker.api_url', 'http://girder:8080/api/v1')
 if User().findOne() is None:
     User().createUser('admin', 'password', 'Admin', 'Admin', 'admin@nowhere.nil')
 adminUser = User().findOne({'admin': True})
-# Make sure we have an assetstore
-if Assetstore().findOne() is None:
-    Assetstore().createFilesystemAssetstore('Assetstore', '/assetstore')
+
+# Configure asset stores
+Assetstore().createFilesystemAssetstore('Assetstore', '/assetstore')
+Assetstore().createFilesystemAssetstore('SMM', '/Datashare/SMM')
+
 # If we don't have a default task folder, make a task collection and folder
 if not Setting().get('slicer_cli_web.task_folder'):
     # Make sure we have a Tasks collection with a Slicer CLI Web Tasks folder
