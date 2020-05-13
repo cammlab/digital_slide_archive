@@ -21,7 +21,7 @@ To be viewed by default, images must be in the tiled tiff format.  The UI can al
 
 ### HistomicsUI vs. Image Detail Page
 
-When you first click on an image from the UI file browser, it will take you to a detail page that may or may not show an image preview (depending on file format) and some other information and metadata.  To view the full HistomicsUI page with full zoom and annotation capability, click the drop down menu in the top right and select "View in HistomicsUI".
+When you first click on an image from the UI file browser, it will take you to a detail page that may or may not show an image preview (depending on file format) and some other information and metadata.  To view the full HistomicsUI page with full zoom and annotation capability, click the drop down menu in the top right and select "Open in HistomicsUI".
 
 </details>
 
