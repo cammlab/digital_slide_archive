@@ -17,8 +17,10 @@ services:
     volumes:
       # Default assetstore
       - /Datashare/HistomicsUI/assetstore:/assetstore
-      # SMM assetstore
+      # SMM assetstore - FSS
       - /Datashare/SMM:/Datashare/SMM
+      # SMM assetstore - GlusterFS
+      - /glusterfs/SMM:/glusterfs/SMM
       # Location of girder.local.conf and girder_config.py
       - .:/conf
       # Location to store logs

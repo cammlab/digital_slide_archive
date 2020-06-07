@@ -28,6 +28,7 @@ adminUser = User().findOne({'admin': True})
 if Assetstore().findOne() is None:
     Assetstore().createFilesystemAssetstore('Assetstore', '/assetstore')
     Assetstore().createFilesystemAssetstore('SMM', '/Datashare/SMM')
+    Assetstore().createFilesystemAssetstore('GlusterFS', '/glusterfs/SMM')
 
 # If we don't have a default task folder, make a task collection and folder
 if not Setting().get('slicer_cli_web.task_folder'):
